@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="header">
+    <h1>Clientes</h1>
+    <button mat-raised-button color="primary" (click)="onAddCustomer()">
+      <mat-icon>add</mat-icon>
+      Agregar Cliente
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Cargando clientes...</p>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <table mat-table [dataSource]="customers" class="mat-elevation-z8">
+      <!-- Tipo de Documento Column -->
+      <ng-container matColumnDef="documentType">
+        <th mat-header-cell *matHeaderCellDef>Tipo de Documento</th>
+        <td mat-cell *matCellDef="let customer">{{customer.documentType}}</td>
+      </ng-container>
+
+      <!-- Número de Documento Column -->
+      <ng-container matColumnDef="documentNumber">
+        <th mat-header-cell *matHeaderCellDef>Número de Documento</th>
+        <td mat-cell *matCellDef="let customer">{{customer.documentNumber}}</td>
+      </ng-container>
+
+      <!-- Nombre Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let customer">{{customer.name}}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let customer">{{customer.email}}</td>
+      </ng-container>
+
+      <!-- Teléfono Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+        <td mat-cell *matCellDef="let customer">{{customer.phone}}</td>
+      </ng-container>
+
+      <!-- Dirección Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Dirección</th>
+        <td mat-cell *matCellDef="let customer">{{customer.address}}</td>
+      </ng-container>
+
+      <!-- Acciones Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let customer">
+          <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Acciones">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onEditCustomer(customer)">
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item (click)="onViewInvoices(customer)">
+              <mat-icon>receipt</mat-icon>
+              <span>Ver Facturas</span>
+            </button>
+            <button mat-menu-item (click)="onDeleteCustomer(customer)">
+              <mat-icon>delete</mat-icon>
+              <span>Eliminar</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator
+      [length]="totalRecords"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="onPageChange($event)"
+      aria-label="Seleccionar página">
+    </mat-paginator>
+  </div>
+</div> 

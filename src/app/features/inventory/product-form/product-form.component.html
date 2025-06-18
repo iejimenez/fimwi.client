@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="header">
+    <h1>{{isEditMode ? 'Editar' : 'Nuevo'}} Producto</h1>
+    <button mat-button routerLink="/inventory/products">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="form">
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>SKU</mat-label>
+            <input matInput formControlName="sku" placeholder="SKU del producto">
+            <mat-error *ngIf="productForm.get('sku')?.hasError('required')">
+              El SKU es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name" placeholder="Nombre del producto">
+            <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput formControlName="description" rows="3" placeholder="Descripción del producto"></textarea>
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Categoría</mat-label>
+            <input matInput formControlName="category" placeholder="Categoría del producto">
+            <mat-error *ngIf="productForm.get('category')?.hasError('required')">
+              La categoría es requerida
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Precio Unitario</mat-label>
+            <input matInput type="number" formControlName="unitPrice" placeholder="0.00">
+            <mat-error *ngIf="productForm.get('unitPrice')?.hasError('required')">
+              El precio es requerido
+            </mat-error>
+            <mat-error *ngIf="productForm.get('unitPrice')?.hasError('min')">
+              El precio debe ser mayor a 0
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Stock Mínimo</mat-label>
+            <input matInput type="number" formControlName="minStock" placeholder="0">
+            <mat-error *ngIf="productForm.get('minStock')?.hasError('required')">
+              El stock mínimo es requerido
+            </mat-error>
+            <mat-error *ngIf="productForm.get('minStock')?.hasError('min')">
+              El stock mínimo debe ser mayor o igual a 0
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Stock Máximo</mat-label>
+            <input matInput type="number" formControlName="maxStock" placeholder="0">
+            <mat-error *ngIf="productForm.get('maxStock')?.hasError('required')">
+              El stock máximo es requerido
+            </mat-error>
+            <mat-error *ngIf="productForm.get('maxStock')?.hasError('min')">
+              El stock máximo debe ser mayor al stock mínimo
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-actions">
+          <button mat-button type="button" routerLink="/inventory/products">Cancelar</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+            {{isEditMode ? 'Actualizar' : 'Crear'}} Producto
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div> 

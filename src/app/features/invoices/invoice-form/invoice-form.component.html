@@ -1,0 +1,118 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{isEditMode ? 'Editar' : 'Crear'}} Factura</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Cliente</mat-label>
+            <mat-select formControlName="customerId" required>
+              <mat-option *ngFor="let customer of customers" [value]="customer.id">
+                {{customer.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="invoiceForm.get('customerId')?.hasError('required')">
+              El cliente es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="invoiceForm.get('date')?.hasError('required')">
+              La fecha es requerida
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Número de Factura</mat-label>
+            <input matInput formControlName="invoiceNumber" required>
+            <mat-error *ngIf="invoiceForm.get('invoiceNumber')?.hasError('required')">
+              El número de factura es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="status" required>
+              <mat-option value="draft">Borrador</mat-option>
+              <mat-option value="sent">Enviada</mat-option>
+              <mat-option value="paid">Pagada</mat-option>
+              <mat-option value="cancelled">Cancelada</mat-option>
+            </mat-select>
+            <mat-error *ngIf="invoiceForm.get('status')?.hasError('required')">
+              El estado es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="items-section">
+          <h3>Items</h3>
+          <div formArrayName="items">
+            <div *ngFor="let item of items.controls; let i=index" [formGroupName]="i" class="item-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Producto</mat-label>
+                <mat-select formControlName="productId" required>
+                  <mat-option *ngFor="let product of products" [value]="product.id">
+                    {{product.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="item.get('productId')?.hasError('required')">
+                  El producto es requerido
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Cantidad</mat-label>
+                <input matInput type="number" formControlName="quantity" required min="1">
+                <mat-error *ngIf="item.get('quantity')?.hasError('required')">
+                  La cantidad es requerida
+                </mat-error>
+                <mat-error *ngIf="item.get('quantity')?.hasError('min')">
+                  La cantidad debe ser mayor a 0
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Precio Unitario</mat-label>
+                <input matInput type="number" formControlName="unitPrice" required min="0">
+                <mat-error *ngIf="item.get('unitPrice')?.hasError('required')">
+                  El precio unitario es requerido
+                </mat-error>
+                <mat-error *ngIf="item.get('unitPrice')?.hasError('min')">
+                  El precio debe ser mayor o igual a 0
+                </mat-error>
+              </mat-form-field>
+
+              <button mat-icon-button color="warn" type="button" (click)="removeItem(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <button mat-stroked-button type="button" (click)="addItem()">
+            <mat-icon>add</mat-icon>
+            Agregar Item
+          </button>
+        </div>
+
+        <div class="form-row total-row">
+          <span>Total: {{calculateTotal() | currency}}</span>
+        </div>
+
+        <div class="form-actions">
+          <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="invoiceForm.invalid">
+            {{isEditMode ? 'Actualizar' : 'Crear'}}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div> 

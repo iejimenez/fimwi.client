@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.mat-mdc-card {
+  max-width: 800px;
+  margin: 0 auto;
+} 

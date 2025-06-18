@@ -1,0 +1,74 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{isEditMode ? 'Editar' : 'Crear'}} Proveedor</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="code" placeholder="Ingrese el código del proveedor">
+        <mat-error *ngIf="supplierForm.get('code')?.hasError('required')">
+          El código es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" placeholder="Ingrese el nombre del proveedor">
+        <mat-error *ngIf="supplierForm.get('name')?.hasError('required')">
+          El nombre es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre de Contacto</mat-label>
+        <input matInput formControlName="contactName" placeholder="Ingrese el nombre del contacto">
+        <mat-error *ngIf="supplierForm.get('contactName')?.hasError('required')">
+          El nombre de contacto es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Correo Electrónico</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Ingrese el correo electrónico">
+        <mat-error *ngIf="supplierForm.get('email')?.hasError('required')">
+          El correo electrónico es requerido
+        </mat-error>
+        <mat-error *ngIf="supplierForm.get('email')?.hasError('email')">
+          Por favor ingrese un correo electrónico válido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="phone" placeholder="Ingrese el número de teléfono">
+        <mat-error *ngIf="supplierForm.get('phone')?.hasError('required')">
+          El teléfono es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Dirección</mat-label>
+        <textarea matInput formControlName="address" placeholder="Ingrese la dirección" rows="3"></textarea>
+        <mat-error *ngIf="supplierForm.get('address')?.hasError('required')">
+          La dirección es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>NIT</mat-label>
+        <input matInput formControlName="taxId" placeholder="Ingrese el NIT">
+        <mat-error *ngIf="supplierForm.get('taxId')?.hasError('required')">
+          El NIT es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="supplierForm.invalid">
+          {{isEditMode ? 'Actualizar' : 'Crear'}} Proveedor
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card> 

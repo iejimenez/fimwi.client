@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.mat-column-actions {
+  width: 120px;
+  text-align: center;
+}
+
+.mat-mdc-card {
+  margin-bottom: 20px;
+}
+
+.mat-mdc-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+} 

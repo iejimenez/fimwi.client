@@ -1,0 +1,157 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@admin.com",
+      "role": "admin"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "sku": "PROD-001",
+      "name": "Laptop HP 15.6\"",
+      "description": "Laptop HP 15.6 pulgadas, Intel Core i5, 8GB RAM, 256GB SSD",
+      "category": "Electronics",
+      "unitPrice": 899.99,
+      "minStock": 5,
+      "maxStock": 50,
+      "currentStock": 25
+    },
+    {
+      "id": "2",
+      "sku": "PROD-002",
+      "name": "Monitor Dell 24\"",
+      "description": "Monitor Dell 24 pulgadas, Full HD, LED",
+      "category": "Electronics",
+      "unitPrice": 249.99,
+      "minStock": 3,
+      "maxStock": 30,
+      "currentStock": 15
+    }
+  ],
+  "batches": [
+    {
+      "id": "1",
+      "productId": "1",
+      "batchNumber": "BATCH-001",
+      "quantity": 50,
+      "purchasePrice": 750.00,
+      "manufacturingDate": "2024-01-15",
+      "expirationDate": "2025-01-15",
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "productId": "2",
+      "batchNumber": "BATCH-002",
+      "quantity": 30,
+      "purchasePrice": 200.00,
+      "manufacturingDate": "2024-02-01",
+      "expirationDate": "2025-02-01",
+      "status": "active"
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "1",
+      "code": "SUP-001",
+      "name": "Tech Solutions Inc.",
+      "contactName": "John Smith",
+      "email": "john@techsolutions.com",
+      "phone": "+1-555-0123",
+      "address": "123 Tech Street, Silicon Valley, CA",
+      "taxId": "TAX-123456"
+    },
+    {
+      "id": "2",
+      "code": "SUP-002",
+      "name": "Global Electronics",
+      "contactName": "Maria Garcia",
+      "email": "maria@globalelectronics.com",
+      "phone": "+1-555-0124",
+      "address": "456 Electronic Ave, New York, NY",
+      "taxId": "TAX-789012"
+    }
+  ],
+  "purchaseOrders": [
+    {
+      "id": "1",
+      "supplierId": "1",
+      "orderNumber": "PO-001",
+      "date": "2024-03-01",
+      "status": "pending",
+      "items": [
+        {
+          "productId": "1",
+          "quantity": 10,
+          "unitPrice": 750.00
+        }
+      ],
+      "total": 7500.00
+    }
+  ],
+  "customers": [
+    {
+      "id": "1",
+      "code": "CUST-001",
+      "name": "ABC Corporation",
+      "contactName": "Robert Johnson",
+      "email": "robert@abccorp.com",
+      "phone": "+1-555-0125",
+      "address": "789 Business Blvd, Chicago, IL",
+      "taxId": "TAX-345678"
+    },
+    {
+      "id": "2",
+      "code": "CUST-002",
+      "name": "XYZ Enterprises",
+      "contactName": "Sarah Williams",
+      "email": "sarah@xyzent.com",
+      "phone": "+1-555-0126",
+      "address": "321 Enterprise St, Boston, MA",
+      "taxId": "TAX-901234"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "1",
+      "invoiceNumber": "INV-001",
+      "customerId": "1",
+      "date": "2024-03-15",
+      "status": "paid",
+      "items": [
+        {
+          "productId": "1",
+          "productName": "Laptop HP 15.6\"",
+          "quantity": 2,
+          "unitPrice": 899.99,
+          "subtotal": 1799.98
+        }
+      ],
+      "subtotal": 1799.98,
+      "tax": 287.99,
+      "total": 2087.97
+    },
+    {
+      "id": "2",
+      "invoiceNumber": "INV-002",
+      "customerId": "2",
+      "date": "2024-03-16",
+      "status": "pending",
+      "items": [
+        {
+          "productId": "2",
+          "productName": "Monitor Dell 24\"",
+          "quantity": 5,
+          "unitPrice": 249.99,
+          "subtotal": 1249.95
+        }
+      ],
+      "subtotal": 1249.95,
+      "tax": 199.99,
+      "total": 1449.94
+    }
+  ]
+} 
