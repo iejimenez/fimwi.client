@@ -1,3 +1,5 @@
+export type DocumentType = 'CC' | 'CE' | 'TI' | 'NIT';
+
 export interface Supplier {
   id: string;
   code: string;
@@ -6,10 +8,8 @@ export interface Supplier {
   email: string;
   phone: string;
   address: string;
-  taxId: string;
-  status: SupplierStatus;
-  createdAt: Date;
-  updatedAt: Date;
+  documentType: DocumentType;
+  documentNumber: string;
 }
 
 export interface PurchaseOrder {
@@ -44,4 +44,26 @@ export enum PurchaseOrderStatus {
   APPROVED = 'APPROVED',
   DELIVERED = 'DELIVERED',
   CANCELLED = 'CANCELLED'
+}
+
+export interface CreateSupplier {
+  code: string;
+  name: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  address: string;
+  documentType: DocumentType;
+  documentNumber: string;
+}
+
+export interface UpdateSupplier {
+  code: string;
+  name: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  address: string;
+  documentType: DocumentType;
+  documentNumber: string;
 } 

@@ -15,6 +15,7 @@ import { Customer } from '../../../core/models/customer.model';
 import { CustomerService } from '../../../core/services/customer.service';
 import { ConfirmDialogComponent } from '../../../core/components/confirm-dialog/confirm-dialog.component';
 import { PaginatedResponse } from '../../../core/models/paginated-response.model';
+import { CustomerFormComponent } from '../customer-form/customer-form.component';
 
 @Component({
   selector: 'app-customer-list',
@@ -79,11 +80,29 @@ export class CustomerListComponent implements OnInit {
   }
 
   onAddCustomer(): void {
-    this.router.navigate(['/customers/new']);
+    const dialogRef = this.dialog.open(CustomerFormComponent, {
+      width: '600px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadCustomers();
+      }
+    });
   }
 
   onEditCustomer(customer: Customer): void {
-    this.router.navigate(['/customers', customer.id, 'edit']);
+    const dialogRef = this.dialog.open(CustomerFormComponent, {
+      width: '600px',
+      data: { customer }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadCustomers();
+      }
+    });
   }
 
   onViewInvoices(customer: Customer): void {

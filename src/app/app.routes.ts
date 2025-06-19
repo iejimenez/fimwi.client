@@ -48,14 +48,6 @@ export const routes: Routes = [
             loadComponent: () => import('./features/suppliers/supplier-list/supplier-list.component').then(m => m.SupplierListComponent)
           },
           {
-            path: 'new',
-            loadComponent: () => import('./features/suppliers/supplier-form/supplier-form.component').then(m => m.SupplierFormComponent)
-          },
-          {
-            path: ':id/edit',
-            loadComponent: () => import('./features/suppliers/supplier-form/supplier-form.component').then(m => m.SupplierFormComponent)
-          },
-          {
             path: ':id/orders',
             loadComponent: () => import('./features/suppliers/purchase-orders/purchase-orders.component').then(m => m.PurchaseOrdersComponent)
           }
@@ -67,14 +59,6 @@ export const routes: Routes = [
           {
             path: '',
             loadComponent: () => import('./features/customers/customer-list/customer-list.component').then(m => m.CustomerListComponent)
-          },
-          {
-            path: 'new',
-            loadComponent: () => import('./features/customers/customer-form/customer-form.component').then(m => m.CustomerFormComponent)
-          },
-          {
-            path: ':id/edit',
-            loadComponent: () => import('./features/customers/customer-form/customer-form.component').then(m => m.CustomerFormComponent)
           },
           {
             path: ':id/invoices',

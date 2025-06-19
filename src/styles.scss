@@ -109,6 +109,24 @@ html, body {
 
 .mat-mdc-form-field {
   width: 100%;
+  --mdc-outlined-text-field-container-height: 36px !important;
+  --mdc-text-field-label-text-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.mat-mdc-text-field-wrapper,
+.mat-mdc-form-field-infix {
+  min-height: 36px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.mat-mdc-input-element,
+textarea.mat-mdc-input-element {
+  height: 24px !important;
+  font-size: 0.95rem !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
 }
 
 .mat-mdc-card {
@@ -165,4 +183,171 @@ html, body {
 .status-badge.discontinued {
   background-color: #ffebee;
   color: #c62828;
+}
+
+:host {
+  display: block;
+  padding: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.header {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  /* border: 1px solid red; */
+
+  h1 {
+    margin: 0;
+    flex: 0 1 auto;
+    font-size: 2rem;
+    font-weight: 500;
+    min-width: 0;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  button,
+  .mat-mdc-button,
+  .mat-raised-button {
+    flex: 0 0 auto;
+    margin-left: 16px;
+    white-space: nowrap;
+    min-width: 0 !important;
+    max-width: 100%;
+    width: auto !important;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.loading-container p {
+  margin-top: 16px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.actions-header {
+  text-align: center;
+}
+
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 8px;
+}
+
+.mat-column-actions {
+  width: 48px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.mat-column-actions button {
+  padding: 0;
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+
+.mat-column-actions .mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  vertical-align: middle;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+  background: #f5f5f5;
+}
+
+.mat-mdc-card {
+  margin-bottom: 20px;
+}
+
+.mat-mdc-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+// Ajuste definitivo para height de inputs compactos
+::ng-deep .mat-mdc-form-field .mat-mdc-input-element,
+::ng-deep .mat-mdc-form-field textarea.mat-mdc-input-element,
+::ng-deep .mat-mdc-input-element,
+::ng-deep textarea.mat-mdc-input-element {
+  height: 36px !important;
+  font-size: 0.95rem !important;
+  line-height: 36px !important;
+  box-sizing: border-box;
+  vertical-align: middle !important;
+  margin: 0 !important;
+  padding: 0 12px !important;
+}
+
+::ng-deep .mat-mdc-form-field .mdc-floating-label {
+  font-size: 0.95rem !important;
+  left: 12px !important;
+  right: 12px !important;
+  line-height: 1.2 !important;
+  padding: 0 !important;
+  pointer-events: auto;
+  top: 16px !important;
+  transform: none !important;
+}
+
+::ng-deep .mat-mdc-form-field .mdc-text-field--focused .mdc-floating-label,
+::ng-deep .mat-mdc-form-field .mdc-floating-label--float-above {
+  top: 2px !important;
+  font-size: 0.85rem !important;
+  transform: scale(0.75) !important;
+  background: none !important;
+  transition: top 0.2s cubic-bezier(0.4,0,0.2,1), font-size 0.2s cubic-bezier(0.4,0,0.2,1), transform 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+// Forzar el tamaño y alineación del contenedor del input de Angular Material para inputs compactos
+::ng-deep .mat-mdc-form-field .mdc-text-field {
+  min-height: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  align-items: center !important;
+  display: flex !important;
 }

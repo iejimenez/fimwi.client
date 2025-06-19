@@ -1,74 +1,76 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>{{isEditMode ? 'Editar' : 'Crear'}} Proveedor</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
+<div class="dialog-container">
+  <h2 mat-dialog-title>{{isEditMode ? 'Editar Proveedor' : 'Nuevo Proveedor'}}</h2>
+  <mat-dialog-content>
     <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Código</mat-label>
-        <input matInput formControlName="code" placeholder="Ingrese el código del proveedor">
+        <input matInput formControlName="code">
         <mat-error *ngIf="supplierForm.get('code')?.hasError('required')">
           El código es requerido
         </mat-error>
       </mat-form-field>
-
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name" placeholder="Ingrese el nombre del proveedor">
+        <input matInput formControlName="name">
         <mat-error *ngIf="supplierForm.get('name')?.hasError('required')">
           El nombre es requerido
         </mat-error>
       </mat-form-field>
-
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre de Contacto</mat-label>
-        <input matInput formControlName="contactName" placeholder="Ingrese el nombre del contacto">
+        <input matInput formControlName="contactName">
         <mat-error *ngIf="supplierForm.get('contactName')?.hasError('required')">
           El nombre de contacto es requerido
         </mat-error>
       </mat-form-field>
-
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Correo Electrónico</mat-label>
-        <input matInput type="email" formControlName="email" placeholder="Ingrese el correo electrónico">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email">
         <mat-error *ngIf="supplierForm.get('email')?.hasError('required')">
-          El correo electrónico es requerido
+          El email es requerido
         </mat-error>
         <mat-error *ngIf="supplierForm.get('email')?.hasError('email')">
-          Por favor ingrese un correo electrónico válido
+          Ingrese un email válido
         </mat-error>
       </mat-form-field>
-
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Teléfono</mat-label>
-        <input matInput formControlName="phone" placeholder="Ingrese el número de teléfono">
+        <input matInput formControlName="phone">
         <mat-error *ngIf="supplierForm.get('phone')?.hasError('required')">
           El teléfono es requerido
         </mat-error>
       </mat-form-field>
-
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Dirección</mat-label>
-        <textarea matInput formControlName="address" placeholder="Ingrese la dirección" rows="3"></textarea>
+        <textarea matInput formControlName="address" rows="2"></textarea>
         <mat-error *ngIf="supplierForm.get('address')?.hasError('required')">
           La dirección es requerida
         </mat-error>
       </mat-form-field>
-
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>NIT</mat-label>
-        <input matInput formControlName="taxId" placeholder="Ingrese el NIT">
-        <mat-error *ngIf="supplierForm.get('taxId')?.hasError('required')">
-          El NIT es requerido
+        <mat-label>Tipo de Documento</mat-label>
+        <mat-select formControlName="documentType">
+          <mat-option *ngFor="let type of documentTypes" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="supplierForm.get('documentType')?.hasError('required')">
+          El tipo de documento es requerido
         </mat-error>
       </mat-form-field>
-
-      <div class="form-actions">
-        <button mat-button type="button" (click)="onCancel()">Cancelar</button>
-        <button mat-raised-button color="primary" type="submit" [disabled]="supplierForm.invalid">
-          {{isEditMode ? 'Actualizar' : 'Crear'}} Proveedor
-        </button>
-      </div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Número de Documento</mat-label>
+        <input matInput formControlName="documentNumber">
+        <mat-error *ngIf="supplierForm.get('documentNumber')?.hasError('required')">
+          El número de documento es requerido
+        </mat-error>
+      </mat-form-field>
     </form>
-  </mat-card-content>
-</mat-card> 
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!supplierForm.valid">
+      {{isEditMode ? 'Actualizar' : 'Crear'}}
+    </button>
+  </mat-dialog-actions>
+</div> 
