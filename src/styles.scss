@@ -123,9 +123,9 @@ html, body {
 
 .mat-mdc-input-element,
 textarea.mat-mdc-input-element {
-  height: 24px !important;
+  height: 32px !important;
   font-size: 0.95rem !important;
-  padding-top: 4px !important;
+  padding-top: 12px !important;
   padding-bottom: 4px !important;
 }
 
@@ -330,7 +330,7 @@ table {
   line-height: 1.2 !important;
   padding: 0 !important;
   pointer-events: auto;
-  top: 16px !important;
+  top: 8px !important;
   transform: none !important;
 }
 
@@ -351,3 +351,17 @@ table {
   align-items: center !important;
   display: flex !important;
 }
+
+
+
+::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+  top: calc(var(--mat-form-field-container-height) / 3) !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{
+  --mat-mdc-form-field-label-transform: translateY(calc(calc(6.75px + var(--mat-form-field-container-height) / 3) * -1)) scale(var(--mat-mdc-form-field-floating-label-scale, 0.75)) !important;
+  transform: var(--mat-mdc-form-field-label-transform) !important;
+}
+
+
+

@@ -47,3 +47,15 @@ mat-card {
 mat-card-header {
   margin-bottom: 20px;
 } 
+
+
+
+::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+  top: calc(var(--mat-form-field-container-height) / 3) !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{
+  --mat-mdc-form-field-label-transform: translateY(calc(calc(6.75px + var(--mat-form-field-container-height) / 3) * -1)) scale(var(--mat-mdc-form-field-floating-label-scale, 0.75)) !important;
+  transform: var(--mat-mdc-form-field-label-transform) !important;
+}
+

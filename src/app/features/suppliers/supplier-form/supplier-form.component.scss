@@ -1,28 +1,11 @@
-:host {
-  display: block;
-  padding: 20px;
+.dialog-container {
+  min-width: 500px;
+  max-width: 600px;
 }
 
 .full-width {
   width: 100%;
   margin-bottom: 16px;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.mat-mdc-card {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.dialog-container {
-  min-width: 500px;
-  max-width: 600px;
 }
 
 mat-dialog-content {
@@ -38,4 +21,42 @@ mat-dialog-actions {
 
 mat-form-field {
   margin-bottom: 8px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  mat-form-field {
+    flex: 1;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+mat-card {
+  margin-bottom: 20px;
+}
+
+mat-card-header {
+  margin-bottom: 20px;
 } 
+
+
+
+::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+  top: calc(var(--mat-form-field-container-height) / 3) !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above{
+  --mat-mdc-form-field-label-transform: translateY(calc(calc(6.75px + var(--mat-form-field-container-height) / 3) * -1)) scale(var(--mat-mdc-form-field-floating-label-scale, 0.75)) !important;
+  transform: var(--mat-mdc-form-field-label-transform) !important;
+}
+
+

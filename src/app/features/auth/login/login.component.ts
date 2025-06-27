@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
@@ -18,71 +19,16 @@ import { AuthService } from '../../../core/services/auth.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
-  template: `
-    <div class="login-container">
-      <mat-card class="login-card">
-        <mat-card-header>
-          <mat-card-title>Login</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Email</mat-label>
-              <input matInput formControlName="email" type="email" placeholder="Enter your email">
-              <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
-                Email is required
-              </mat-error>
-              <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
-                Please enter a valid email address
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Password</mat-label>
-              <input matInput formControlName="password" type="password" placeholder="Enter your password">
-              <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-                Password is required
-              </mat-error>
-            </mat-form-field>
-
-            <div class="form-actions">
-              <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
-                Login
-              </button>
-            </div>
-          </form>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  `,
-  styles: [`
-    .login-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f5f5f5;
-    }
-    .login-card {
-      width: 100%;
-      max-width: 400px;
-      padding: 20px;
-    }
-    .full-width {
-      width: 100%;
-      margin-bottom: 16px;
-    }
-    .form-actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 24px;
-    }
-  `]
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  error: string | null = null;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -97,13 +43,18 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
+    this.error = null;
     if (this.loginForm.valid) {
+      this.loading = true;
       const { email, password } = this.loginForm.value;
       this.authService.login({ email, password }).subscribe({
         next: (response) => {
+          this.loading = false;
           this.router.navigate(['/dashboard']);
         },
         error: (error: Error) => {
+          this.loading = false;
+          this.error = 'Error al iniciar sesión';
           this.snackBar.open('Error al iniciar sesión', 'Cerrar', { duration: 3000 });
           console.error('Error al iniciar sesión:', error);
         }
